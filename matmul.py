@@ -48,7 +48,7 @@ def openFile(matFile):
     return np.array(matrix)
 
 
-
+# Driver method
 def __main__():
     if (len(sys.argv) != 3):
         print("CLI Format: python matmul_hw5.py <MatrixFile1.txt> <MatrixFile2.txt>")
