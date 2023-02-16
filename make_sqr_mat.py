@@ -1,6 +1,7 @@
 import sys
 import random
 
+# Uses random number generator to create a n by n matrix
 def fillMatrix(N):
     matrix = []
     for _ in range(N):
@@ -10,6 +11,7 @@ def fillMatrix(N):
         matrix.append(curr_row)
     return matrix
 
+# Iterates through created matrix and fills output files
 def writeOutMatFile(filePath, matrix):
     filePath = filePath.replace(".txt", "")
     pathA = filePath + "_matA.txt"
@@ -40,8 +42,11 @@ def __main__():
     except:
         print("Size of Matrix output files must be a number and divisible by 2")
 
-
+    
+    # fill a matrix
     mat1 = fillMatrix(N)
+    
+    # write matrix to output files
     writeOutMatFile(sys.argv[1], mat1)
 
 
