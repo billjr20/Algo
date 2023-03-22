@@ -13,8 +13,8 @@ def knapsack(weight, items):
             # against the value you could get by including the item
             dp[j] = max(dp[j], dp[j - item_weight] + item_value)
 
-    # Return the optimal value
-    return dp[weight]
+    # Return the last value (optimal knapsack value)
+    return dp[-1]
 
 def openFile(txt_file):
     # weight is the size of the knapsack
