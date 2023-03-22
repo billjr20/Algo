@@ -18,10 +18,12 @@ def good_bit_strings(n):
     
     # allocate and seed tribonacci array
     trib_arr = [0] * (n)
+    # base cases supplied by problem description
     trib_arr[0], trib_arr[1], trib_arr[2] = 2, 4, 7
 
     # do O(n) tribonacci compuations and store them in the trib_arr
     for i in range(3, n):
+        # computation of f(i) = f(i-1) + f(i-2) + f(i-3)
         trib_arr[i] = trib_arr[i-1] + trib_arr[i-2] + trib_arr[i-3]
     
     # return the last value in the tribonacci arracy
