@@ -2,19 +2,19 @@ import sys
 
 def knapsack(weight, items):
     # create 1D array to store subproblem solutions
-    dp = [0] * (weight + 1)
+    dp_matrix = [0] * (weight + 1)
 
     # fill in the array in a bottom-up manner
     for i in range(len(items)):
-        item_weight, item_value = items[i]
+        item_w, item_v = items[i]
         # iterate over the possible weight limits in reverse order
-        for j in range(weight, item_weight - 1, -1):
-            # update the current value of dp[j] by comparing it
+        for j in range(weight, item_w - 1, -1):
+            # update the current value of dp_matrix[j] by comparing it
             # against the value you could get by including the item
-            dp[j] = max(dp[j], dp[j - item_weight] + item_value)
+            dp_matrix[j] = max(dp_matrix[j], dp_matrix[j - item_w] + item_v)
 
     # Return the last value (optimal knapsack value)
-    return dp[-1]
+    return dp_matrix[-1]
 
 def openFile(txt_file):
     # weight is the size of the knapsack
