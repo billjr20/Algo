@@ -1,23 +1,20 @@
 import sys
 
 def knapsack(weight, items):
-    # create a 2D array to store knapsack table of subproblem solutions
-    dp_mat = [[0 for _ in range(weight + 1)] for _ in range(len(items) + 1)]
+    # create 1D array to store subproblem solutions
+    dp_matrix = [0] * (weight + 1)
 
     # fill in the array in a bottom-up manner
-    for i in range(1, len(items) + 1):
-        item_w, item_v = items[i - 1]
-        for j in range(1, weight + 1):
-            # exclude too heavy item
-            if item_w > j:
-                dp_mat[i][j] = dp_mat[i - 1][j]
-            
-            # choose whether to include the item or not based on which yields a higher value
-            else:
-                dp_mat[i][j] = max(dp_mat[i - 1][j], dp_mat[i - 1][j - item_w] + item_v)
+    for i in range(len(items)):
+        item_w, item_v = items[i]
+        # iterate over the possible weight limits in reverse order
+        for j in range(weight, item_w - 1, -1):
+            # update the current value of dp_matrix[j] by comparing it
+            # against the value you could get by including the item
+            dp_matrix[j] = max(dp_matrix[j], dp_matrix[j - item_w] + item_v)
 
-    # return bottom right corner (optimal knapsack value)
-    return dp_mat[-1][-1]
+    # Return the last value (optimal knapsack value)
+    return dp_matrix[-1]
 
 def openFile(txt_file):
     # weight is the size of the knapsack
@@ -30,6 +27,7 @@ def openFile(txt_file):
             if iters == 0:
                 weight = int(line.split(" ")[1])
             elif iters == 1:
+                # preallocate items list
                 items = [(0,0)] * int(line.split(" ")[1])
 
             else:
