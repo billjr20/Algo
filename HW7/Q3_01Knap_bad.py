@@ -11,7 +11,7 @@ def knapsack(weight, items):
             # exclude too heavy item
             if item_w > j:
                 dp_mat[i][j] = dp_mat[i - 1][j]
-
+            
             # choose whether to include the item or not based on which yields a higher value
             else:
                 dp_mat[i][j] = max(dp_mat[i - 1][j], dp_mat[i - 1][j - item_w] + item_v)
@@ -30,7 +30,6 @@ def openFile(txt_file):
             if iters == 0:
                 weight = int(line.split(" ")[1])
             elif iters == 1:
-                # preallocate items list
                 items = [(0,0)] * int(line.split(" ")[1])
 
             else:
