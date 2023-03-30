@@ -75,16 +75,16 @@ def openFile(txt_file):
     return weight, items
 
 
-def outputFilePrint(optimal_knapsack_val, trace_queue, output_filename):
+# format output in accordance with how problem 1 outlines
+def outputFilePrint(optimal_knapsack_val, trace, output_filename):
     with open(output_filename, "w") as f_out:
         f_out.write(f"V {optimal_knapsack_val}\n")
-        f_out.write(f"i {len(trace_queue)}\n")
-        for i in range(len(trace_queue)):
-            # f_out.write(f"{trace_queue[i][0]}\n")
-            f_out.write(f"{trace_queue[i][0]}, {trace_queue[i][1]}, {trace_queue[i][2]}\n")
+        f_out.write(f"i {len(trace)}\n")
+        for i in range(len(trace)):
+            f_out.write(f"{trace[i][0]}\n")
 
 
-
+# driver code
 def main():
     if (len(sys.argv) != 3):
         print("CLI Format: python Q1_Knap_w_Trace.py <Knapsack_Data.txt> <Knapsack_OutputFile>")
@@ -95,9 +95,15 @@ def main():
         print("Please make sure knapsack data files are passed as text files (.txt)")
         return
 
+    # open and read data from input file
     weight, items = openFile(sys.argv[1])
+
+    # compute O(nW) time and space knapsack and compute the item trace
     optimal_knapsack_val, trace_queue = knapsack(weight, items)
+
+    # print the item trace
     outputFilePrint(optimal_knapsack_val, trace_queue, sys.argv[2])
+
 
 if __name__ == "__main__":
     main()
