@@ -116,6 +116,8 @@ def main():
     
     # using items in the knapsack computed above generate the max
     # value of the knapsack O(n), items, bounded so not time dominant
+    # very much repeated work but much easier than passing something
+    # more back from div_conq_knapsack
     max_val = 0
     for knap_item in out_items:
         max_val += items[knap_item-1][1]
