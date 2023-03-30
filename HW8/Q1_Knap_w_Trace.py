@@ -45,6 +45,7 @@ def knapsack(weight, items):
             weight = weight - items[i-1][0]
             res = res - items[i-1][1]
     # return bottom right corner (optimal knapsack value)
+    # and traced items
     return dp_mat[-1][-1], trace_queue
 
 # All file parsing pieces are constant time operations as the 
